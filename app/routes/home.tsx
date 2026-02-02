@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Resumind" },
+    { title: "Resume Analyzer" },
     { name: "description", content: "Smart feedback for your dream job!" },
   ];
 }
@@ -40,7 +40,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+    <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar />
 
       <section className="main-section">
@@ -61,7 +61,13 @@ export default function Home() {
         {!loadingResumes && resumes.length > 0 && (
           <div className="resumes-section">
             {resumes.map((resume) => (
-              <ResumeCard key={resume.id} resume={resume} />
+              <ResumeCard 
+                key={resume.id} 
+                resume={resume}
+                onDelete={(deletedId) => {
+                  setResumes(resumes.filter(r => r.id !== deletedId));
+                }}
+              />
             ))}
           </div>
         )}

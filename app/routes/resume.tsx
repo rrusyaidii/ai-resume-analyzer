@@ -6,7 +6,7 @@ import Summary from "~/components/Summary";
 import { usePuterStore } from "~/lib/puter";
 
 export const meta = () => [
-  { title: "Resumind | Review" },
+  { title: "Resume Analyzer | Review" },
   { name: "description", content: "Detailed overview of resume" },
 ];
 
@@ -53,18 +53,18 @@ const resume = () => {
   }, [id]);
 
   return (
-    <main className="!pt-0">
+    <main className="min-h-screen bg-gray-50 dark:bg-gray-900 !pt-0">
       <nav className="resume-nav">
         <Link to="/" className="back-button">
           <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5" />
-          <span className="text-gray-800 text-sm font-semibold">
+          <span className="text-sm font-semibold">
             Back to Homepage
           </span>
         </Link>
       </nav>
 
       <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className="feedback-section bg-[url('/images/bg-small.svg')] bg-cover h-[100vh] sticky top-0 items-center justify-center">
+        <section className="feedback-section bg-gray-100 dark:bg-gray-800 h-[100vh] sticky top-0 items-center justify-center border-r border-gray-200 dark:border-gray-700">
           {imageUrl && resumeUrl && (
             <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
               <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
@@ -79,7 +79,7 @@ const resume = () => {
         </section>
 
         <section className="feedback-section">
-          <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Resume Review</h2>
           {feedback ? (
             <div className="flex flex-col gap-8 animate-in fade-in duration-1000">
               <Summary feedback={feedback} />

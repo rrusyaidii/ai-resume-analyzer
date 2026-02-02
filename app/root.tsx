@@ -33,14 +33,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, [init]);
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var s=document.documentElement.classList;var k=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;if(k==='dark'||(k===null&&d))s.add('dark');else s.remove('dark');})();`,
+          }}
+        />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
         <script src="https://js.puter.com/v2/"></script>
         {children}
         <ScrollRestoration />
@@ -71,7 +76,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main className="pt-16 p-4 container mx-auto bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100">
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
